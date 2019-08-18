@@ -21,7 +21,7 @@ $entry_to_render = get_entry($id_to_render);
                 #DateTime::createFromFormat('j-M-Y', '15-Feb-2009');
                 $date = new DateTime($entry_to_render[0]['date']);
                 ?>
-                <h1>The best day I’ve ever had</h1>
+                <h1><?php echo $entry_to_render[0]['title']; ?></h1>
                 <time datetime="<?php echo $entry_to_render[0]['date']; ?>">
                     <?php
                     echo $date->format('jS F Y');
@@ -30,7 +30,7 @@ $entry_to_render = get_entry($id_to_render);
                 <div class="entry">
                     <h3>Time Spent: </h3>
                     <p><?php
-                        echo $entry_to_render[0]['time_spent'] . " hours";
+                        echo $entry_to_render[0]['time_spent'];
                         ?></p>
                 </div>
                 <div class="entry">
@@ -55,6 +55,23 @@ $entry_to_render = get_entry($id_to_render);
                         <li>Nunc ut rhoncus felis, vel tincidunt neque</li>
                         <li><a href="">Ipsum dolor sit amet</a></li> -->
                     </ul>
+                </div>
+                <div class="entry">
+                    <h3>Tags:</h3>
+                    <?php
+                    $tags_rendered = $entry_to_render[0]['tags'];
+                    ?>
+                    <div>
+
+                        <?php
+                        if ($tags_rendered) {
+                            $string = explode(",", $tags_rendered);
+                            foreach ($string as $word) {
+                                echo "<div class='tags'>#" . trim($word) . "</div>";
+                            }
+                        }
+                        ?>
+                    </div>
                 </div>
             </article>
         </div>

@@ -3,7 +3,7 @@ include("inc/header.php");
 
 try {
     $results = $db->query(
-        "SELECT * FROM entries"
+        "SELECT * FROM entries ORDER BY date ASC"
     );
 } catch (Exception $e) {
     echo $e->getMessage();
@@ -28,10 +28,17 @@ $entries = $results->fetchAll(PDO::FETCH_ASSOC);
                     </h2>
                     <time datetime="' . $entry['date'] . '">'
                     . $date->format('jS F Y') .
-                    '</time>
-                </article>
-                
-                ';
+                    '</time>';
+                echo '<div class="tags-div">';
+                if ($entry['tags']) {
+                    $string = explode(",", $entry['tags']);
+                    foreach ($string as $word) {
+                        echo "<p class='tags-inline'>#" . trim($word) . "</p>";
+                    }
+                }
+                echo '</div>';
+
+                echo '</article>';
             }
             ?>
         </div>

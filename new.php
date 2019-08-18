@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         && !empty($_POST['whatILearned'])
         && !empty($_POST['ResourcesToRemember'])
     ) {
-        $added = add_entry($_POST['title'], $_POST['date'], $_POST['timeSpent'], $_POST['whatILearned'], $_POST['ResourcesToRemember']);
+        $added = add_entry($_POST['title'], $_POST['date'], $_POST['timeSpent'], $_POST['whatILearned'], $_POST['ResourcesToRemember'], $_POST['entryTags']);
     }
 }
 
@@ -53,6 +53,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <textarea id="what-i-learned" rows="5" name="whatILearned"></textarea>
                 <label for="resources-to-remember">Resources to Remember</label>
                 <textarea id="resources-to-remember" rows="5" name="ResourcesToRemember"></textarea>
+                <label for="entry-tags">Enter hashtags for entry (separated by comma)</label>
+                <input type="text" id="entry-tags" name="entryTags"></input><br><br>
                 <input type="submit" value="Publish Entry" class="button">
                 <a href="#" class="button button-secondary">Cancel</a>
             </form>

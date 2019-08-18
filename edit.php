@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         && !empty($_POST['whatILearned'])
         && !empty($_POST['ResourcesToRemember'])
     ) {
-        $updated = update_entry($id, $_POST['title'], $_POST['date'], $_POST['timeSpent'], $_POST['whatILearned'], $_POST['ResourcesToRemember']);
+        $updated = update_entry($id, $_POST['title'], $_POST['date'], $_POST['timeSpent'], $_POST['whatILearned'], $_POST['ResourcesToRemember'], $_POST['entryTags']);
         if ($updated) {
             header("location:index.php");
             die();
@@ -83,6 +83,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <textarea id="resources-to-remember" rows="5" name="ResourcesToRemember">
                 <?php echo $entry_to_render[0]['resources']; ?>
                 </textarea>
+                <label for="entry-tags">Enter hashtags for entry (separated by comma)</label>
+                <input value="<?php if ($entry_to_render[0]['tags']) {
+                                    echo $entry_to_render[0]['tags'];
+                                } ?>" type="text" id="entry-tags" name="entryTags"></input><br><br>
                 <input type="submit" value="Publish Entry" class="button">
                 <a href="#" class="button button-secondary">Cancel</a>
             </form>
