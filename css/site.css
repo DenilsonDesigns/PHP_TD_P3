@@ -191,17 +191,23 @@ ul li a {
   display: inline-block;
 }
 
-.tags-div p {
+.tags-div a {
   display: inline-block;
+  text-decoration: none;
+  color: rgb(13, 41, 65);
 }
 .tags-inline {
   background-color: rgb(133, 238, 238);
   width: auto;
   height: auto;
-  padding: 0.5px;
-  margin: 0.5px;
-  border-radius: 5px;
+  padding: 1px;
+  margin: 1px;
+  border-radius: 2px;
   font-size: 12px;
+}
+
+.tag-heading {
+  text-align: center;
 }
 
 /* ==========================================================================

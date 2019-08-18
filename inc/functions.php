@@ -59,7 +59,7 @@ function update_entry($id, $title, $date, $time, $learn, $resources, $tags)
         $results = $db->prepare($sql);
         $results->bindValue(1, $title, PDO::PARAM_STR);
         $results->bindValue(2, $date, PDO::PARAM_STR);
-        $results->bindValue(3, $time, PDO::PARAM_INT);
+        $results->bindValue(3, $time, PDO::PARAM_STR);
         $results->bindValue(4, $learn, PDO::PARAM_LOB);
         $results->bindValue(5, $resources, PDO::PARAM_LOB);
         $results->bindValue(6, $tags, PDO::PARAM_STR);

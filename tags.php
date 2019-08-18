@@ -1,9 +1,16 @@
 <?php
 include("inc/header.php");
 
+if (!isset($_GET['tag'])) {
+    header("location:index.php");
+    die();
+}
+
+$tag_to_search = $_GET['tag'];
+
 try {
     $results = $db->query(
-        "SELECT * FROM entries ORDER BY date ASC"
+        "SELECT * FROM entries e WHERE e.tags LIKE '%$tag_to_search%'"
     );
 } catch (Exception $e) {
     echo $e->getMessage();
@@ -16,6 +23,7 @@ $entries = $results->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <section>
     <div class="container">
+        <h2 class="tag-heading">Projects containing #<?php echo $tag_to_search; ?> tag</h2>
         <div class="entry-list">
             <?php
             foreach ($entries as $entry) {

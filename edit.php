@@ -10,6 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 // if isset $_POST
 // logic here to update db
+$error_msg = '';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id = intval($_POST['id']);
 
@@ -29,6 +30,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $error_msg .= "Please enter what you learned!</br>";
     }
 
+    // if ($error_msg) {
+    //     echo $error_msg;
+    //     header("location:edit.php?id=$id");
+    // }
+
     if (
         !empty($_POST['title'])
         && !empty($_POST['date'])
@@ -41,6 +47,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             header("location:index.php");
             die();
         }
+    } else {
+        echo $error_msg;
     }
 }
 
@@ -57,6 +65,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="edit-entry">
             <h2>Edit Entry</h2>
             <?php
+            if (!isset($entry_to_render)) {
+                echo $error_msg;
+                die();
+            }
+
+
             $date = new DateTime($entry_to_render[0]['date']);
             $day = $date->format('d');
             $month = $date->format('m');
